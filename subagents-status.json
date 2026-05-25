@@ -1,8 +1,13 @@
 {
-  "timestamp": "2026-05-25T08:30:00Z",
-  "active_agents": [],
+  "timestamp": "2026-05-25T09:50:00Z",
+  "active_agents": [
+    {
+      "id": "subagent-test-01",
+      "task": "Proceso de prueba visual"
+    }
+  ],
   "hierarchy": {
     "root": "Ash",
-    "children": []
+    "children": ["subagent-test-01"]
   }
 }
