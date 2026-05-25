@@ -13,14 +13,18 @@
     <div id="cy"></div>
     <script>
         async function fetchStatus() {
-            const response = await fetch('subagents-status.json');
-            const data = await response.json();
-            
-            const elements = [{ data: { id: 'Ash', label: 'Ash (Main)' } }];
-            data.active_agents.forEach(agent => {
-                elements.push({ data: { id: agent.id, label: agent.task } });
-                elements.push({ data: { source: 'Ash', target: agent.id } });
-            });
+            try {
+                const response = await fetch(window.location.origin + '/subagents-status.json?t=' + Date.now());
+                const data = await response.json();
+                
+                const elements = [{ data: { id: 'Ash', label: 'Ash (Main)' } }];
+                if (data.active_agents) {
+                    data.active_agents.forEach(agent => {
+                        elements.push({ data: { id: agent.id, label: agent.task } });
+                        elements.push({ data: { source: 'Ash', target: agent.id } });
+                    });
+                }
+                // ... rest of the cytoscape logic
 
             var cy = cytoscape({
                 container: document.getElementById('cy'),
