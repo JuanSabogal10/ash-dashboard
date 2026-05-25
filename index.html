@@ -24,17 +24,19 @@
                         elements.push({ data: { source: 'Ash', target: agent.id } });
                     });
                 }
-                // ... rest of the cytoscape logic
 
-            var cy = cytoscape({
-                container: document.getElementById('cy'),
-                elements: elements,
-                style: [
-                    { selector: 'node', style: { 'background-color': '#0074D9', 'label': 'data(label)' } },
-                    { selector: 'edge', style: { 'width': 3, 'line-color': '#ccc' } }
-                ],
-                layout: { name: 'breadthfirst' }
-            });
+                var cy = cytoscape({
+                    container: document.getElementById('cy'),
+                    elements: elements,
+                    style: [
+                        { selector: 'node', style: { 'background-color': '#0074D9', 'label': 'data(label)' } },
+                        { selector: 'edge', style: { 'width': 3, 'line-color': '#ccc' } }
+                    ],
+                    layout: { name: 'breadthfirst' }
+                });
+            } catch (err) {
+                console.error("Dashboard fetch error:", err);
+            }
         }
         setInterval(fetchStatus, 5000);
         fetchStatus();
